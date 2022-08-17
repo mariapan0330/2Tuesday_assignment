@@ -5,7 +5,7 @@
 {% block content %}
 <h2 class="text-center mt-4">New Addressee</h2>
 
-<form class="post" style="margin: 0vw 20vw 0vw 20vw;">
+<form method="post" style="margin: 0vw 20vw 0vw 20vw;">
     {{ form.csrf_token }}
     <div class="form-group">
         {{ form.name.label }}

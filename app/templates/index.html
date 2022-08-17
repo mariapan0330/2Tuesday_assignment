@@ -1,3 +1,14 @@
 {% extends 'base.html' %}
 
+{% block title %}Address Book - Home{% endblock title %}
+
 {% block home_active %}active{% endblock home_active %}
+
+{% block content %}
+<h2 class="text-center mt-4 fw-bold">Welcome to the address book!</h2>
+<h5 class="text-center">Click the button below to get started.</h5>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+    <a class="btn btn-outline-success mt-3 py-4 px-5 mx-auto fs-5 fw-bold" href="{{ url_for('new_address') }}" role="button">Add New Address</a>
+</div>
+{% endblock content %}
