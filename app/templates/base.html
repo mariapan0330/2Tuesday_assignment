@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>{% block title %} {% endblock title %}</title>
+</head>
+<body style="background-color:rgb(178, 211, 178)">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success px-5 py-4 fs-4">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-4" href="{{ url_for('index') }}">Address Book</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link {% block home_active %}{% endblock home_active %}" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                <a class="nav-link {% block newpage_active %}{% endblock newpage_active %}" href="{{ url_for('new_address') }}">New Addressee</a>
+                <a class="nav-link {% block showpage_active %}{% endblock showpage_active %}" href="{{ url_for('show_addresses') }}">Show Addressees</a>
+            </div>
+            </div>
+        </div>
+    </nav>
+      
+    <div class="container">
+    {% block content %}
+    {% endblock content %}
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>

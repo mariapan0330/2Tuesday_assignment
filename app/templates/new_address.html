@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block newpage_active %}active{% endblock newpage_active %}
+
+{% block content %}
+<h2 class="text-center mt-4">New Addressee</h2>
+
+<form class="post" style="margin: 0vw 20vw 0vw 20vw;">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name(class='form-control mb-3', placeholder='Name or Company') }}
+
+        {{ form.phone.label }}
+        {{ form.phone(class='form-control mb-3', placeholder='Phone Number') }}
+
+        {{ form.address.label }}
+        {{ form.address(class='form-control mb-3', placeholder='Address') }}
+
+        {{ form.submit(class='btn btn-primary w-100 mt-3') }}
+    </div>
+</form>
+
+{% endblock content %}
