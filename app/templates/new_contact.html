@@ -3,7 +3,7 @@
 {% block newpage_active %}active{% endblock newpage_active %}
 
 {% block content %}
-<h2 class="text-center mt-4">New Addressee</h2>
+<h2 class="text-center mt-4">New Contact</h2>
 
 <form method="post" style="margin: 0vw 20vw 0vw 20vw;">
     {{ form.csrf_token }}
@@ -16,6 +16,9 @@
 
         {{ form.address.label }}
         {{ form.address(class='form-control mb-3', placeholder='Address') }}
+        
+        {{ form.notes.label }}
+        {{ form.notes(class='form-control mb-3', placeholder='Any Notes') }}
 
         {{ form.submit(class='btn btn-primary w-100 mt-3') }}
     </div>

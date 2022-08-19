@@ -1,25 +1,25 @@
 from flask import render_template
 from app import app
-from app.forms import AddresseeForm
-from app.models import Addressee
+from app.forms import ContactForm
+from app.models import Contact
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/new_address', methods=['GET','POST'])
-def new_address():
-    form = AddresseeForm()
+@app.route('/new_contact', methods=['GET','POST'])
+def new_contact():
+    form = ContactForm()
     if form.validate_on_submit():
-        print('Addressee successfully validated')
         name = form.name.data
         phone = form.phone.data
         address = form.address.data
-        new_addressee = Addressee(name=name, phone=phone, address=address)
-    return render_template('new_address.html', form=form)
+        notes = form.notes.data
+        new_contact = Contact(name=name, phone=phone, address=address, notes=notes)
+    return render_template('new_contact.html', form=form)
 
 
-@app.route('/show_addresses')
-def show_addresses():
-    return render_template('show_addresses.html')
+# @app.route('/show_contacts')
+# def show_contacts():
+#     return render_template('show_contacts.html')
