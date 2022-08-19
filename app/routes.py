@@ -20,6 +20,6 @@ def new_contact():
     return render_template('new_contact.html', form=form)
 
 
-# @app.route('/show_contacts')
-# def show_contacts():
-#     return render_template('show_contacts.html')
+@app.route('/show_contacts')
+def show_contacts():
+    return render_template('show_contacts.html')
