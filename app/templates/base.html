@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>{% block title %} {% endblock title %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5ac4d58eb8.js" crossorigin="anonymous"></script>
+    <title>{% block title %} {% endblock title %}</title>
 </head>
-<body style="background-color:rgb(198, 226, 198)">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success px-5 py-3 fs-4">
+<body style="background-color:rgb(193, 213, 245)">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-5 fs-5">
         <div class="container-fluid">
-            <a class="navbar-brand fs-4" href="{{ url_for('index') }}">Phone Book</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand fs-4" href="{{ url_for('index') }}"><i class="fa-solid fa-address-book fs-1"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link {% block home_active %}{% endblock home_active %}" aria-current="page" href="{{ url_for('index') }}">Home</a>
-                <a class="nav-link {% block newpage_active %}{% endblock newpage_active %}" href="{{ url_for('new_contact') }}">New Contact</a>
-                <a class="nav-link {% block showpage_active %}{% endblock showpage_active %}" href="{{ url_for('show_contacts') }}">Show Contact</a>
-            </div>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% block home_active %}{% endblock home_active %}" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% block newcontact_active %}{% endblock newcontact_active %}" href="{{ url_for('new_contact') }}">New Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% block logout_active %}{% endblock logout_active %}" href="{{ url_for('logout') }}">Log Out</a>    
+                    </li>
+                    </ul>
+                    <span class="navbar-text">{{ current_user.username }} &#8194 <i class="fa-solid fa-user-check fs-3"></i></span>
+
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% block signup_active %}{% endblock signup_active %}" href="{{ url_for('signup') }}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% block login_active %}{% endblock login_active %}" href="{{ url_for('login') }}">Log In</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
         </div>
     </nav>
       
     <div class="container">
-    {% block content %}
-    {% endblock content %}
+        {% include 'alert.html' %}
+        {% block content %}
+        {% endblock content %}
     </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>

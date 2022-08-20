@@ -5,10 +5,32 @@
 {% block home_active %}active{% endblock home_active %}
 
 {% block content %}
-<h2 class="text-center mt-4 fw-bold">Welcome to the Phone book!</h2>
-<h5 class="text-center">Please sign up or log in to view contacts.</h5>
+{% if current_user.is_authenticated %}
+<h2 class="text-center my-4 fw-bold">Your Contacts</h2>
+    {% for contact in contacts %}
+        {% if contact.author == current_user %}
+        <div class="row justify-content-center mt-3">
+            <div class="mb-4 p-4 btn btn-light" style="width: 50rem;" href="{{ url_for('view_single_contact', contact_id=contact.contact_id) }}">
+                <a href="{{ url_for('view_single_contact', contact_id=contact.contact_id) }}" style="text-decoration: None; color:black" class="text-center">
+                    <h5 class="card-title">{{ contact.name }}</h5>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+        <!-- <h4 class="text-center my-4 fw-bold">You don't have any contacts yet!</h4>
+        <a class="btn btn-outline-light mt-3 py-4 px-5 mx-auto fs-5" href="{{ url_for('new_contact') }}" role="button">Add New Contact</a> -->
+{% else %}
 
-<div class="d-grid gap-2 col-6 mx-auto">
-    <a class="btn btn-outline-success mt-3 py-4 px-5 mx-auto fs-5 fw-bold" href="{{ url_for('new_contact') }}" role="button">Sign Up</a>
-</div>
+<div class="row justify-content-center">
+    <div class="card w-50 mt-5 p-5 pt-4">
+        <div class="card-body row justify-content-center">
+                <h2 class="text-center mt-4 fw-bold">Welcome to the Big Phone book!</h2>
+                <h5 class="text-center">Please sign up or log in to view contacts.</h5>
+                <a class="col btn btn-outline-primary mx-3 mt-3 py-3 px-4 fs-5 fw-bold" href="{{ url_for('signup') }}" role="button">Sign Up</a>
+                <a class="col btn btn-primary mx-3 mt-3 py-3 px-4 fs-5 fw-bold" href="{{ url_for('login') }}" role="button">Log In</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
 {% endblock content %}

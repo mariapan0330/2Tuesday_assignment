@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block signup_active %}active{% endblock signup_active %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="card w-50 mt-5 p-5 pt-4">
+        <div class="card-body">
+            <h1 class="text-center">Sign Up</h1>
+            <form method="post">
+                <!-- style="margin: 0vw 20vw 0vw 20vw;" -->
+                <!-- post request puts stuff on the server. wont work by itself, you have to also make a methods['GET','POST'] in the route -->
+                {{ form.csrf_token }}
+                <!-- every time you submit the form, it needs a new token so it can validate the field. -->
+                <div class="form-group">
+                    {{ form.email.label(class='fs-4 mb-1') }}
+                    {{ form.email(class='form-control mb-3', placeholder='Enter Email') }}
+                    
+                    {{ form.username.label(class='fs-4 mb-1') }}
+                    {{ form.username(class='form-control mb-3', placeholder='Enter Username') }}
+                    
+                    {{ form.password.label(class='fs-4 mb-1') }}
+                    {{ form.password(class='form-control mb-3', placeholder='Enter Password') }}
+                    
+                    {{ form.confirm_password.label(class='fs-4 mb-1') }}
+                    {{ form.confirm_password(class='form-control mb-3', placeholder='Confirm Password') }}
+
+                    {{ form.submit(class='btn btn-primary w-100 mt-3') }}
+                    <!-- w-100 makes width 100% -->
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

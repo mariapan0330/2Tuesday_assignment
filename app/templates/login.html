@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock title %}
+
+{% block login_active %}active{% endblock login_active %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="card w-50 mt-5 p-5 pt-4">
+        <div class="card-body">
+            <h1 class="text-center">Log In</h1>
+            <form method="post">
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    {{ form.username.label(class='fs-4 mb-1') }}
+                    {{ form.username(class='form-control mb-3', placeholder='Enter Username') }}
+                    
+                    {{ form.password.label(class='fs-4 mb-1') }}
+                    {{ form.password(class='form-control mb-3', placeholder='Enter Password') }}
+
+                    {{ form.submit(class='btn btn-primary w-100 mt-3') }}
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
