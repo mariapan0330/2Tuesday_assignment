@@ -6,29 +6,28 @@ from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(50), nullable=False, unique=True)
-    username = db.Column(db.String(25), nullable=False, unique=True)
-    # password = db.Column(db.String(150), nullable=False)
-    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
-    contacts = db.relationship('Contact', backref='author', lazy='dynamic')
+#     email = db.Column(db.String(50), nullable=False, unique=True)
+#     username = db.Column(db.String(25), nullable=False, unique=True)
+#     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+#     password = db.Column(db.String(150), nullable=False)
+    # contacts = db.relationship('Contact', backref='author', lazy='dynamic')
 
     def __init__(self, **kwargs):
     # has to have kwargs ability and call super with the kwargs
         super().__init__(**kwargs)
-        self.set_password(kwargs['password'])
+        # self.set_password(kwargs['password'])
         db.session.add(self)
         db.session.commit()
 
-    def __repr__(self):
-        return f"<User {self.user_id} | {self.username}>"
+#     def __repr__(self):
+#         return f"<User {self.user_id} | {self.username}>"
     
-    def check_password(self, pw):
-        # returns true if self.password == the password they put in
-        return check_pw(self.password, pw)
+#     def check_password(self, pw):
+#         # returns true if self.password == the password they put in
+#         return check_pw(self.password, pw)
 
-    def set_password(self, pw):
-        self.password = gen_pw(pw)
+#     def set_password(self, pw):
+#         self.password = gen_pw(pw)
 
 
 
