@@ -43,7 +43,7 @@ class Contact(db.Model):
     name = db.Column(db.String(50), nullable=False)
     phone = db.Column(db.String(10))
     address = db.Column(db.String(200))
-    notes = db.Column(db.String(500))
+    notes = db.Column(db.String(200))
     date_added = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
