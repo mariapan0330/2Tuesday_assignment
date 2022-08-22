@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(50), nullable=False, unique=True)
     username = db.Column(db.String(25), nullable=False, unique=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    password = db.Column(db.String(150), nullable=False)
+    password = db.Column(db.String(200), nullable=False)
     contacts = db.relationship('Contact', backref='author', lazy='dynamic')
 
     def __init__(self, **kwargs):
